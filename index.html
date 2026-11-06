@@ -120,7 +120,7 @@ function calc(){V={};act={};const fx=P.fx||1,{w}=idx();let paid=0,pend=0,nf=0,al
  for(const g of D.groups)V['pc:g:'+g.id]=g.c.reduce((t,i)=>t+(V['pc:'+i]||0),0);
  V['pc:ALL']=all;
  const G=(k,e,a)=>{V[k+':e']=e;V[k+':a']=a;V[k+':d']=e-a;V[k+':p']=e?a/e*100:0};let TE=0,TA=0;
- for(const s of D.secs){let se=0,sa=0;for(const r of RW[s.id]||[]){const e=est(s,r),a=anyR(s,r)?est(s,realObj(s,r)):(act[r.i]||0);V['e:'+r.i]=e;V['a:'+r.i]=a;V['x:'+r.i]=a?e-a:0;se+=e;sa+=a;if(r.g)V['g:'+s.id+':'+r.g]=(V['g:'+s.id+':'+r.g]||0)+e}const cs=CS_SECS.includes(s.id)?se*csPct():0;V['cs:'+s.id]=cs;V['t:'+s.id]=se+cs;V['ta:'+s.id]=sa}
+ for(const s of D.secs){let se=0,sa=0;for(const r of RW[s.id]||[]){const e=est(s,r),a=anyR(s,r)?est(s,realObj(s,r)):(act[r.i]||0);V['e:'+r.i]=e;V['a:'+r.i]=a;V['x:'+r.i]=e-a;se+=e;sa+=a;if(r.g)V['g:'+s.id+':'+r.g]=(V['g:'+s.id+':'+r.g]||0)+e}const cs=CS_SECS.includes(s.id)?se*csPct():0;V['cs:'+s.id]=cs;V['t:'+s.id]=se+cs;V['ta:'+s.id]=sa}
  for(const c of D.cats){const e=c.s.reduce((t,i)=>t+V['t:'+i],0),a=c.s.reduce((t,i)=>t+V['ta:'+i],0)+(dp[c.id]||0);G('c.'+c.id,e,a);TE+=e;TA+=a}
  for(const g of D.groups){const e=g.c.reduce((t,i)=>t+(V['c.'+i+':e']||0),0),a=g.c.reduce((t,i)=>t+(V['c.'+i+':a']||0),0);G('g.'+g.id,e,a)}
  const fe=fin(TE),fa=fin(TA,1);G('f.g',TE,TA);for(const k of['imp','com','est','tax','fin'])G('f.'+k,fe[k],fa[k]);V['f.gan:e']=fe.gan;G('f.tot',fe.tot,fa.tot);V['f.o25']=fin(TE,0,25).tot;V['f.o12']=fin(TE,0,12).tot;
